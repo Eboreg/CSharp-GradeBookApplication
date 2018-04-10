@@ -19,7 +19,6 @@ namespace GradeBook.GradeBooks
                 averageGrades.Add(student.AverageGrade);
             }
             averageGrades.Sort();
-            //for (int i = averageGrades.Count - 1; i >= 0; i--) {
             for (int i = 0; i < averageGrades.Count; i++) {
                 if (averageGrades[i] >= averageGrade) {
                     double percentile = (double) i / (averageGrades.Count - 1);
@@ -36,6 +35,22 @@ namespace GradeBook.GradeBooks
                 }
             }
             return 'A';
+        }
+
+        public override void CalculateStatistics() {
+            if (Students.Count < 5) {
+                Console.WriteLine("Ranked grading requires at least 5 students with grades in order to properly calculate a student's overall grade.");
+            } else {
+                base.CalculateStatistics();
+            }
+        }
+
+        public override void CalculateStudentStatistics(string name) {
+            if (Students.Count < 5) {
+                Console.WriteLine("Ranked grading requires at least 5 students with grades in order to properly calculate a student's overall grade.");
+            } else {
+                base.CalculateStudentStatistics(name);
+            }
         }
     }
 }
