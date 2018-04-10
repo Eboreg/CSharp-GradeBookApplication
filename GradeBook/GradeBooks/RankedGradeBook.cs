@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using GradeBook.Enums;
 
 namespace GradeBook.GradeBooks
@@ -10,6 +11,8 @@ namespace GradeBook.GradeBooks
         }
 
         public override char GetLetterGrade(double averageGrade) {
+            if (Students.Count < 5)
+                throw new InvalidOperationException();
             double studentsPerGrade = Students.Count * 0.2;
             List<double> averageGrades = new List<double>();
             foreach (Student student in Students) {
